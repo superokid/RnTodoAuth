@@ -9,6 +9,7 @@
  */
 
 import React from 'react';
+import {registerRootComponent} from 'expo';
 import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
@@ -33,4 +34,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default registerRootComponent(App);

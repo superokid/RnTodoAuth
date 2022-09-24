@@ -1,0 +1,7 @@
+** BUILD FAILED **
+
+
+The following build commands failed:
+	CompileSwift normal x86_64
+	CompileSwiftSources normal x86_64 com.apple.xcode.tools.swift.compiler
+(2 failures)
