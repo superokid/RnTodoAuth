@@ -1,4 +1,8 @@
 {
   "name": "RnTodoAuth",
-  "displayName": "RnTodoAuth"
+  "extra": {
+    "eas": {
+      "projectId": "a4ce723e-6f2f-49a0-9805-350ed440df1b"
+    }
+  }
 }
