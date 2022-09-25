@@ -15,7 +15,7 @@ const RouteWrapper = () => {
         cancelLabel: 'Cancel',
       });
 
-      if (biometricAuth) {
+      if (biometricAuth.success) {
         setAuth(true);
       }
     } catch (err) {

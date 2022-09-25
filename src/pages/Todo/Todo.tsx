@@ -13,7 +13,7 @@ const Todo = () => {
 
   const handleSubmit = (val: string) => {
     if (!val) {
-      Alert.alert('type something');
+      Alert.alert('Type something');
       return;
     }
     if (selectedItemId) {

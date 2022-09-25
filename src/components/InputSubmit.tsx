@@ -3,6 +3,7 @@ import {
   TextInput,
   StyleSheet,
   TextInputProps,
+  Keyboard,
   KeyboardAvoidingView,
   Platform,
   View,
@@ -50,6 +51,7 @@ const InputSubmit = ({
           onPress={() => {
             setText('');
             onSubmit(text);
+            Keyboard.dismiss();
           }}
         />
       </View>
