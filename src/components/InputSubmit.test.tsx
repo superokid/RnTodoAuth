@@ -16,4 +16,16 @@ describe('<InputSubmit />', () => {
 
     expect(onSubmit).toBeCalledWith(TYPED_INPUT);
   });
+
+  it('should be able replace default input text', () => {
+    render(
+      <InputSubmit
+        inputValue="replacedText"
+        buttonText="submit"
+        onSubmit={jest.fn()}
+      />,
+    );
+
+    expect(screen.getByDisplayValue('replacedText')).toBeTruthy();
+  });
 });

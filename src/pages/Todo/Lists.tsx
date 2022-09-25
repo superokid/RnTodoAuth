@@ -1,18 +1,23 @@
 import React from 'react';
-import {ScrollView, Text, StyleSheet} from 'react-native';
+import {ScrollView, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {TodoItem} from './useTodo';
 
 interface Props {
   items: TodoItem[];
+  onDelete: (val: TodoItem['id']) => void;
+  onItemPress: (val: TodoItem['id']) => void;
 }
 
-const Lists = ({items}: Props) => {
+const Lists = ({items, onDelete, onItemPress}: Props) => {
   return (
     <ScrollView style={styles.scroll}>
       {items.map(item => (
-        <Text key={item.id} style={styles.title} testID="todo-item__text">
-          {item.text}
-        </Text>
+        <TouchableOpacity key={item.id} onPress={() => onItemPress(item.id)}>
+          <Text style={styles.title} testID="todo-item__text">
+            {item.text}
+          </Text>
+          <Text onPress={() => onDelete(item.id)}>Remove</Text>
+        </TouchableOpacity>
       ))}
     </ScrollView>
   );

@@ -1,17 +1,38 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import InputSubmit from '../../components/InputSubmit';
 import Lists from './Lists';
-import useTodo from './useTodo';
+import useTodo, {TodoItem} from './useTodo';
 
 const Todo = () => {
-  const {addTodo, todoList} = useTodo();
+  const {todoList, addTodo, deleteTodo, getTodo, updateTodo} = useTodo();
+  const [selectedItemId, setSelectedItemId] = useState<TodoItem['id'] | null>(
+    null,
+  );
+
+  const handleSubmit = (val: string) => {
+    if (selectedItemId) {
+      updateTodo(selectedItemId, val);
+      setSelectedItemId(null);
+    } else {
+      addTodo(val);
+    }
+  };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Todo</Text>
-      <Lists items={todoList} />
-      <InputSubmit placeholder="Add Todo" buttonText="Add" onSubmit={addTodo} />
+      <Lists
+        items={todoList}
+        onDelete={deleteTodo}
+        onItemPress={setSelectedItemId}
+      />
+      <InputSubmit
+        placeholder={selectedItemId ? 'Update Todo' : 'Add Todo'}
+        buttonText={selectedItemId ? 'Update' : 'Add'}
+        inputValue={selectedItemId ? getTodo(selectedItemId)?.text : ''}
+        onSubmit={handleSubmit}
+      />
     </View>
   );
 };

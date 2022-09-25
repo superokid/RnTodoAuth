@@ -4,7 +4,7 @@ import Lists from './Lists';
 
 describe('<Lists />', () => {
   it('should render empty list', () => {
-    render(<Lists items={[]} />);
+    render(<Lists items={[]} onDelete={jest.fn} onItemPress={jest.fn} />);
     expect(screen.queryByTestId('todo-item__text')).toBeFalsy();
   });
 
@@ -25,6 +25,8 @@ describe('<Lists />', () => {
             text: 'Item3',
           },
         ]}
+        onDelete={jest.fn}
+        onItemPress={jest.fn}
       />,
     );
     expect(screen.getAllByTestId('todo-item__text').length).toBe(3);

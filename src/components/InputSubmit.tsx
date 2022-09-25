@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   TextInput,
   StyleSheet,
@@ -12,10 +12,18 @@ import Button from './Button';
 type Props = {
   buttonText: string;
   onSubmit: (val: string) => void;
+  inputValue?: string;
 } & TextInputProps;
 
-const InputSubmit = ({buttonText, onSubmit, ...props}: Props) => {
+const InputSubmit = ({buttonText, onSubmit, inputValue, ...props}: Props) => {
   const [text, setText] = useState('');
+
+  useEffect(() => {
+    if (inputValue) {
+      setText(inputValue);
+    }
+  }, [inputValue]);
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
