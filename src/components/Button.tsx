@@ -5,6 +5,7 @@ import {
   StyleSheet,
   TouchableOpacityProps,
 } from 'react-native';
+import colors from '../constants/colors';
 
 type Props = {
   text: string;
@@ -29,7 +30,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 32,
     borderRadius: 25,
     elevation: 3,
-    backgroundColor: '#0f36bb',
+    backgroundColor: colors.bluePrimary,
   },
   text: {
     fontSize: 16,

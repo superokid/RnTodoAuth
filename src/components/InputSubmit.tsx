@@ -6,6 +6,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   View,
+  ViewStyle,
 } from 'react-native';
 import Button from './Button';
 
@@ -13,21 +14,27 @@ type Props = {
   buttonText: string;
   onSubmit: (val: string) => void;
   inputValue?: string;
+  containerStyle?: ViewStyle;
 } & TextInputProps;
 
-const InputSubmit = ({buttonText, onSubmit, inputValue, ...props}: Props) => {
+const InputSubmit = ({
+  buttonText,
+  onSubmit,
+  inputValue,
+  containerStyle,
+  ...props
+}: Props) => {
   const [text, setText] = useState('');
 
   useEffect(() => {
-    if (inputValue) {
-      setText(inputValue);
-    }
+    setText(inputValue || '');
   }, [inputValue]);
 
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      keyboardVerticalOffset={64}>
+      keyboardVerticalOffset={64}
+      style={containerStyle}>
       <View style={styles.border}>
         <TextInput
           testID="input-submit__input"
@@ -42,9 +49,7 @@ const InputSubmit = ({buttonText, onSubmit, inputValue, ...props}: Props) => {
           text={buttonText}
           onPress={() => {
             setText('');
-            if (text) {
-              onSubmit(text);
-            }
+            onSubmit(text);
           }}
         />
       </View>
@@ -63,9 +68,8 @@ const styles = StyleSheet.create({
   border: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    borderColor: '#000',
-    borderWidth: 1,
     borderRadius: 26,
     paddingRight: 10,
+    backgroundColor: '#fff',
   },
 });

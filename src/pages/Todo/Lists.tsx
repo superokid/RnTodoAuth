@@ -1,6 +1,7 @@
 import React from 'react';
 import {ScrollView, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {TodoItem} from './useTodo';
+import colors from '../../constants/colors';
 
 interface Props {
   items: TodoItem[];
@@ -12,11 +13,16 @@ const Lists = ({items, onDelete, onItemPress}: Props) => {
   return (
     <ScrollView style={styles.scroll}>
       {items.map(item => (
-        <TouchableOpacity key={item.id} onPress={() => onItemPress(item.id)}>
-          <Text style={styles.title} testID="todo-item__text">
+        <TouchableOpacity
+          style={styles.row}
+          key={item.id}
+          onPress={() => onItemPress(item.id)}>
+          <Text style={styles.textItem} testID="todo-item__text">
             {item.text}
           </Text>
-          <Text onPress={() => onDelete(item.id)}>Remove</Text>
+          <Text style={styles.textDelete} onPress={() => onDelete(item.id)}>
+            REMOVE
+          </Text>
         </TouchableOpacity>
       ))}
     </ScrollView>
@@ -28,11 +34,24 @@ export default Lists;
 const styles = StyleSheet.create({
   scroll: {
     flex: 1,
+    paddingHorizontal: 20,
   },
-  title: {
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    borderRadius: 26,
     marginBottom: 20,
-    fontSize: 38,
-    fontWeight: 'bold',
-    color: '#000',
+    padding: 16,
+  },
+  textItem: {
+    fontSize: 18,
+    color: colors.darkGray,
+    maxWidth: '80%',
+  },
+  textDelete: {
+    color: colors.darkGray,
+    paddingVertical: 8,
   },
 });

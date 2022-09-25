@@ -34,7 +34,7 @@ describe('<Todo />', () => {
     fireEvent.changeText(elInput, 'hello2');
     fireEvent.press(elSubmit);
 
-    const elDelete = screen.getAllByText('Remove');
+    const elDelete = screen.getAllByText('REMOVE');
     fireEvent.press(elDelete[0]);
 
     expect(screen.queryByText('hello1')).toBeFalsy();
