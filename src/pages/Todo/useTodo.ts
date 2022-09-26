@@ -1,4 +1,5 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
+import useSecureStorage from '../../utils/useSecureStorage';
 
 export interface TodoItem {
   id: string;
@@ -15,6 +16,12 @@ interface useTodoReturn {
 
 function useTodo(): useTodoReturn {
   const [todoList, setTodo] = useState<TodoItem[]>([]);
+
+  // persist data
+  const {data} = useSecureStorage('TODO', todoList);
+  useEffect(() => {
+    setTodo(data);
+  }, [data]);
 
   const addTodo: useTodoReturn['addTodo'] = newVal => {
     setTodo(prev => [

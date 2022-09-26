@@ -1,5 +1,11 @@
 import React from 'react';
-import {ScrollView, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {
+  ScrollView,
+  Text,
+  View,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 import {TodoItem} from './useTodo';
 import colors from '../../constants/colors';
 
@@ -17,9 +23,12 @@ const Lists = ({items, onDelete, onItemPress}: Props) => {
           style={styles.row}
           key={item.id}
           onPress={() => onItemPress(item.id)}>
-          <Text style={styles.textItem} testID="todo-item__text">
-            {item.text}
-          </Text>
+          <View style={styles.textContent}>
+            <View style={styles.circle} />
+            <Text style={styles.textItem} testID="todo-item__text">
+              {item.text}
+            </Text>
+          </View>
           <Text style={styles.textDelete} onPress={() => onDelete(item.id)}>
             REMOVE
           </Text>
@@ -45,10 +54,21 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     padding: 16,
   },
+  textContent: {
+    maxWidth: '80%',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  circle: {
+    backgroundColor: colors.bluePrimary,
+    borderRadius: 25,
+    width: 20,
+    height: 20,
+    marginRight: 12,
+  },
   textItem: {
     fontSize: 18,
     color: colors.darkGray,
-    maxWidth: '80%',
   },
   textDelete: {
     color: colors.darkGray,

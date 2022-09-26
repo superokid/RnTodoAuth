@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     padding: 20,
     flex: 1,
+    color: '#000',
   },
   border: {
     flexDirection: 'row',
